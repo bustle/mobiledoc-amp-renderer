@@ -1,5 +1,7 @@
 /* global QUnit */
-
+import {
+  createElement
+} from 'mobiledoc-amp-html-renderer/utils/dom';
 import Renderer from 'mobiledoc-amp-html-renderer';
 import ImageCard from 'mobiledoc-amp-html-renderer/cards/image';
 import {
@@ -290,7 +292,7 @@ test('rendering nested mobiledocs in cards', (assert) => {
     ]
   };
 
-  let renderer = new Renderer({cards});
+  renderer = new Renderer({cards});
   let { result: rendered } = renderer.render(mobiledoc);
   assert.equal(rendered, '<div><p>hello world</p></div>');
 });
@@ -468,4 +470,33 @@ test('XSS: unexpected markup types are not rendered', (assert) => {
   };
   let { result } = renderer.render(mobiledoc);
   assert.ok(result.indexOf('script') === -1, 'no script tag rendered');
+});
+
+test('renders a mobiledoc with sectionElementRenderer', (assert) => {
+  let mobiledoc = {
+    version: MOBILEDOC_VERSION,
+    sections: [
+      [], // markers
+      [   // sections
+      [MARKUP_SECTION_TYPE, 'P', [
+        [[], 0, 'hello world']]
+      ],
+      [MARKUP_SECTION_TYPE, 'p', [
+        [[], 0, 'hello world']]
+      ],
+      [MARKUP_SECTION_TYPE, 'h1', [
+        [[], 0, 'hello world']]
+      ]
+      ]
+    ]
+  };
+  renderer = new Renderer({
+    sectionElementRenderer: {
+      p: () => createElement('pre'),
+      H1: () => createElement('h2')
+    }
+  });
+  let renderResult = renderer.render(mobiledoc);
+  let { result: rendered } = renderResult;
+  assert.equal(rendered, '<pre>hello world</pre><pre>hello world</pre><h2>hello world</h2>');
 });
