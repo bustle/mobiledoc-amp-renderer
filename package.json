@@ -34,6 +34,6 @@
     "testem": "^0.9.0-1"
   },
   "dependencies": {
-    "mobiledoc-dom-renderer": "^0.4.0-beta3"
+    "mobiledoc-dom-renderer": "0.4.0-beta4"
   }
 }
