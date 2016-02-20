@@ -5,8 +5,13 @@ var multiBuilder = require('broccoli-multi-builder');
 var mergeTrees = require('broccoli-merge-trees');
 var testBuilder = require('broccoli-test-builder');
 
+var vendoredModules = [
+  {name: 'mobiledoc-dom-renderer'}
+];
+
 var options = {
-  packageName: 'mobiledoc-amp-html-renderer'
+  packageName: 'mobiledoc-amp-renderer',
+  vendoredModules: vendoredModules
 };
 
 module.exports = mergeTrees([
