@@ -31,7 +31,9 @@
     "broccoli-merge-trees": "^0.2.1",
     "broccoli-multi-builder": "^0.2.6",
     "broccoli-test-builder": "^0.2.0",
-    "mobiledoc-dom-renderer": "^0.4.0-beta3",
     "testem": "^0.9.0-1"
+  },
+  "dependencies": {
+    "mobiledoc-dom-renderer": "^0.4.0-beta3"
   }
 }
