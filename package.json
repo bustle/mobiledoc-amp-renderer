@@ -1,15 +1,15 @@
 {
-  "name": "mobiledoc-amp-html-renderer",
+  "name": "mobiledoc-amp-renderer",
   "version": "0.1.0",
-  "description": "Renders mobiledoc input to AMP HTML (string) output",
-  "main": "dist/commonjs/mobiledoc-amp-html-renderer/index.js",
+  "description": "Renders mobiledoc input to AMP DOM output",
+  "main": "dist/commonjs/mobiledoc-amp-renderer/index.js",
   "scripts": {
     "test": "testem ci",
     "build": "rm -rf dist/ && broccoli build dist"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bustlelabs/mobiledoc-amp-html-renderer"
+    "url": "https://github.com/bustlelabs/mobiledoc-amp-renderer"
   },
   "keywords": [
     "mobiledoc",
@@ -19,18 +19,19 @@
   "author": "Matthew Beale <matt.beale@madhatted.com> (https://madhatted.com)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bustlelabs/mobiledoc-amp-html-renderer/issues"
+    "url": "https://github.com/bustlelabs/mobiledoc-amp-renderer/issues"
   },
   "files": [
     "dist",
     "lib"
   ],
-  "homepage": "https://github.com/bustlelabs/mobiledoc-amp-html-renderer",
+  "homepage": "https://github.com/bustlelabs/mobiledoc-amp-renderer",
   "devDependencies": {
     "broccoli": "^0.16.8",
     "broccoli-merge-trees": "^0.2.1",
     "broccoli-multi-builder": "^0.2.6",
     "broccoli-test-builder": "^0.2.0",
+    "mobiledoc-dom-renderer": "^0.4.0-beta3",
     "testem": "^0.9.0-1"
   }
 }

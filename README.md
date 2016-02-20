@@ -1,4 +1,4 @@
-## Mobiledoc AMP HTML Renderer [![Build Status](https://travis-ci.org/bustlelabs/mobiledoc-amp-html-renderer.svg?branch=master)](https://travis-ci.org/bustlelabs/mobiledoc-amp-html-renderer)
+## Mobiledoc AMP Renderer [![Build Status](https://travis-ci.org/bustlelabs/mobiledoc-amp-renderer.svg?branch=master)](https://travis-ci.org/bustlelabs/mobiledoc-amp-renderer)
 
 This is an Google AMP renderer for the [Mobiledoc format](https://github.com/bustlelabs/mobiledoc-kit/blob/master/MOBILEDOC.md) used
 by [Mobiledoc-Kit](https://github.com/bustlelabs/mobiledoc-kit).
@@ -31,9 +31,9 @@ var mobiledoc = {
     ]
   ]
 };
-var renderer = new AMPHTMLRenderer({cards: []});
+var renderer = new MobiledocAMPRenderer({cards: []});
 var rendered = renderer.render(mobiledoc);
-console.log(rendererd.result); // "<p><b>hello world</b></p>"
+console.log(rendererd.result.outerHTML); // "<p><b>hello world</b></p>"
 ```
 
 The Renderer constructor accepts a single object with the following optional properties:
@@ -44,10 +44,11 @@ The Renderer constructor accepts a single object with the following optional pro
   * `unknownAtomHandler` [function] - Will be called when any unknown atom is enountered
   * `sectionElementRenderer` [object] - A map of hooks for section element rendering.
     * Valid keys are P, H1, H2, H3, BLOCKQUOTE, PULL-QUOTE
+    * The hooks is passed the document
     * A valid value is a function that returns an element
 
 The return value from `renderer.render(mobiledoc)` is an object with two properties:
-  * `result` [string] - The rendered result
+  * `result` [object] - The rendered result, a DOM node
   * `teardown` [function] - When called, this function will tear down the rendered mobiledoc and call any teardown handlers that were registered by cards when they were rendered
 
 #### sectionElementRenderer
@@ -56,12 +57,12 @@ Use this renderer option to customize what element is used when rendering
 a section.
 
 ```
-var renderer = new MobiledocAMPHTMLRenderer({
+var renderer = new MobiledocAMPRenderer({
   sectionElementRenderer: {
-    P: function() { return document.createElement('span'); },
-    H1: function() { return document.createElement('h2'); },
-    H2: function() {
-      var element = document.createElement('h2');
+    P: function(dom) { return dom.createElement('span'); },
+    H1: function(dom) { return dom.createElement('h2'); },
+    H2: function(dom) {
+      var element = dom.createElement('h2');
       element.setAttribute('class', 'subheadline');
       return element;
     }
