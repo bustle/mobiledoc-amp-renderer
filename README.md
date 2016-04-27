@@ -33,7 +33,7 @@ var mobiledoc = {
 };
 var renderer = new MobiledocAMPRenderer({cards: []});
 var rendered = renderer.render(mobiledoc);
-console.log(rendererd.result.outerHTML); // "<p><b>hello world</b></p>"
+console.log(rendered.result.outerHTML); // "<p><b>hello world</b></p>"
 ```
 
 The Renderer constructor accepts a single object with the following optional properties:
